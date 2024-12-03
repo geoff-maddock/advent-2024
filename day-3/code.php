@@ -17,10 +17,8 @@ $firstInt = [];
 $secondInt = [];
 $sum = 0;
 
-
-
-// split the whole string by the segments that start with do()
-echo "Segments".PHP_EOL;
+// split the whole string by the segments that start with do() or don't()
+echo "Segments:".PHP_EOL;
 $segments = preg_split('/(?=do\(\))|(?=don\'t\(\))/', $data);
 foreach ($segments as $key => $segment) {
 
@@ -30,10 +28,9 @@ foreach ($segments as $key => $segment) {
         echo "[".$key."] ".$segment.PHP_EOL;
         $sum = $sum + getValidMul($segment);
     }
-
-
 }
 
+// ANSWER
 echo 'The sum of the valid multiplication functions is: '.$sum.PHP_EOL;
 
 
@@ -66,8 +63,11 @@ function getValidMul($data) {
         echo $firstInt[$key];
         echo " x ";
         echo $secondInt[$key];
+        echo " = ";
+        $running = $firstInt[$key] * $secondInt[$key];
+        echo $running;
 
-        $sum = $sum + $firstInt[$key] * $secondInt[$key];
+        $sum = $sum + $running;
 
         echo PHP_EOL;
     }
