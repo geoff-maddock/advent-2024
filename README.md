@@ -89,3 +89,7 @@ php day-5/print_queue.php
 ```
 
 This will read the input file `day-5/input.txt`, parse the page ordering rules and updates, check the order of updates, and output the sum of the middle page numbers of the correctly-ordered updates.
+
+### New Functionality
+
+The script now also identifies incorrectly-ordered updates, reorders them according to the rules, and sums their middle page numbers after reordering. This ensures that all updates, whether initially in order or not, are processed correctly.
