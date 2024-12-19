@@ -1,25 +1,27 @@
 <?php
 
-function parseInput($filename) {
+function parseInput($filename)
+{
     $content = file_get_contents($filename);
-    list($rulesSection, $updatesSection) = explode("\n\n", $content);
+    [$rulesSection, $updatesSection] = explode("\n\n", $content);
 
-    $rules = array_map(function($line) {
+    $rules = array_map(function ($line) {
         return explode('|', trim($line));
     }, explode("\n", $rulesSection));
 
-    $updates = array_map(function($line) {
+    $updates = array_map(function ($line) {
         return explode(',', trim($line));
     }, explode("\n", $updatesSection));
 
     return [$rules, $updates];
 }
 
-function isUpdateInOrder($update, $rules) {
+function isUpdateInOrder($update, $rules)
+{
     $positions = array_flip($update);
 
     foreach ($rules as $rule) {
-        list($x, $y) = $rule;
+        [$x, $y] = $rule;
         if (isset($positions[$x]) && isset($positions[$y]) && $positions[$x] > $positions[$y]) {
             return false;
         }
@@ -28,13 +30,16 @@ function isUpdateInOrder($update, $rules) {
     return true;
 }
 
-function findMiddlePageNumber($update) {
+function findMiddlePageNumber($update)
+{
     $middleIndex = floor(count($update) / 2);
+
     return $update[$middleIndex];
 }
 
-function main() {
-    list($rules, $updates) = parseInput('day-5/input.txt');
+function main()
+{
+    [$rules, $updates] = parseInput('input.txt');
     $sum = 0;
 
     foreach ($updates as $update) {
